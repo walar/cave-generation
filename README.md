@@ -1,4 +1,4 @@
-cave-generation
-===============
+Bootstrap-Starter
+=================
 
-cave-generation
+Bootstrap Starter (Bower + Grunt)
