@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Kramer-Bootstrap</title>
+    <title>Cave Generation</title>
 
     <link href="assets/css/main.css" rel="stylesheet">
 
@@ -24,14 +24,95 @@
     <![endif]-->
 
     <header class="site-header">
-      <h1>Kramer-Bootstrap</h1>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#top-navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        </div>
 
-      <nav class="site-navigation" role="navigation">
-      </nav>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="top-navbar">
+
+          <div class="navbar-form navbar-left">
+
+            <button id="new" class="btn btn-default" type="button">New</button>
+            <button id="generate" class="btn btn-default" type="button">Generate</button>
+            <button id="identify" class="btn btn-default" type="button">Identify</button>
+
+          </div><!-- /input-group -->
+
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
     </header>
 
-    <main class="site-main" role="main">
-      <h1>Hello, World!</h1>
+    <main class="site-main container" role="main">
+      <h1>Cave Generation</h1>
+
+      <canvas id="cave"></canvas>
+
+      <div class="form-horizontal" role="form">
+        <div class="form-group col-sm-6">
+          <label for="width" class="col-sm-2 control-label">Width</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="width" placeholder="Width">
+            <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <label for="height" class="col-sm-2 control-label">Height</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control" id="height" placeholder="Height">
+            <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <label for="wall-prob" class="col-sm-2 control-label">Wall Probability</label>
+          <div class="col-sm-10">
+            <input type="number" min="0" max="100" class="form-control" id="wall-prob" placeholder="Wall Probability">
+            <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <label for="gen-step" class="col-sm-2 control-label">Generation Step</label>
+          <div class="col-sm-10">
+            <input type="number" min="1" max="100" class="form-control" id="gen-step" placeholder="Generation Step">
+            <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <label for="r1-cutoff" class="col-sm-2 control-label">R1 Cutoff</label>
+          <div class="col-sm-10">
+            <input type="number" min="0" max="9" class="form-control" id="r1-cutoff" placeholder="R1 Cutoff">
+            <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+          </div>
+        </div>
+
+        <div class="form-group col-sm-6">
+          <label for="r2-cutoff" class="col-sm-2 control-label">R2 Cutoff</label>
+          <div class="col-sm-10">
+            <div class="input-group">
+              <span class="input-group-addon">
+                <input id ="b-r2-cutoff" type="checkbox" />
+              </span>
+              <input type="number" min="0" max="9" class="form-control" id="r2-cutoff" placeholder="R2 Cutoff">
+            </div>
+            <span class="help-block">A block of help text that breaks onto a new line and may extend beyond one line.</span>
+          </div>
+        </div>
+
+      </div>
 
     </main>
 

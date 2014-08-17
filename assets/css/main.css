@@ -6186,3 +6186,15 @@ button.close {
     display: none !important;
   }
 }
+h1 {
+  text-align: center;
+}
+#cave {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 1em auto;
+  -webkit-box-shadow: 0 0 5px #000;
+          box-shadow: 0 0 5px #000;
+  border-radius: 2px;
+}
