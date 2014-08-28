@@ -6186,6 +6186,9 @@ button.close {
     display: none !important;
   }
 }
+body {
+  margin-top: 50px;
+}
 h1 {
   text-align: center;
 }
@@ -6193,7 +6196,7 @@ h1 {
   display: block;
   max-width: 100%;
   height: auto;
-  margin: 1em auto;
+  margin: 2em auto;
   -webkit-box-shadow: 0 0 5px #000;
           box-shadow: 0 0 5px #000;
   border-radius: 2px;

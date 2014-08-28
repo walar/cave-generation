@@ -1,4 +1,6 @@
 /*global Cave: false*/
+// http://gamedevelopment.tutsplus.com/tutorials/cave-levels-cellular-automata--gamedev-9664
+// http://www.raywenderlich.com/70610/procedural-level-generation-games-using-cellular-automaton-part-2
 
 var getElement = function(id)
 {
@@ -30,6 +32,7 @@ var importGenInputs = function(O_cave)
   var I_generations = parseInt(getInput('gen-step'));
   var I_r1Cutoff = parseInt(getInput('r1-cutoff'));
   var I_r2Cutoff = parseInt(getInput('r2-cutoff'));
+  var I_borderSize = parseInt(getInput('border-size'));
   var B_r2CutOff = getCheckbox("b-r2-cutoff");
 
   if (!isNaN(I_generations) && I_generations > 0)
@@ -45,6 +48,11 @@ var importGenInputs = function(O_cave)
   if (!isNaN(I_r2Cutoff) && I_r2Cutoff >= 0 && I_r2Cutoff <= 9)
   {
     O_cave.I_r2Cutoff = I_r2Cutoff;
+  }
+
+  if (!isNaN(I_borderSize) && I_borderSize >= 0)
+  {
+    O_cave.I_borderSize = I_borderSize;
   }
 
   getElement("r2-cutoff").disabled = !B_r2CutOff;
@@ -83,6 +91,7 @@ var exportAllInputs = function(O_cave)
   setInput('gen-step', O_cave.I_generations);
   setInput('r1-cutoff', O_cave.I_r1Cutoff);
   setInput('r2-cutoff', O_cave.I_r2Cutoff);
+  setInput('border-size', O_cave.I_borderSize);
   setCheckbox("b-r2-cutoff", O_cave.B_r2Cutoff);
   getElement("r2-cutoff").disabled = !O_cave.B_r2Cutoff;
 };
@@ -94,10 +103,15 @@ $(document).ready(function()
   var O_newButton = getElement('new');
   var O_generateButton = getElement('generate');
   var O_identifyButton = getElement('identify');
+  var O_removeButton = getElement('remove');
+  var O_applyTilesetButton = getElement('apply-tileset');
+  var O_downloadJSONButton = getElement('download-json');
   var O_r2CutoffCheckbox = getElement('b-r2-cutoff');
 
   O_generateButton.disabled = false;
   O_identifyButton.disabled = false;
+  O_removeButton.disabled = true;
+  O_applyTilesetButton.disabled = false;
 
   var O_cave = new Cave();
   O_cave.init();
@@ -113,9 +127,12 @@ $(document).ready(function()
 
     O_generateButton.disabled = false;
     O_identifyButton.disabled = false;
+    O_removeButton.disabled = true;
+    O_applyTilesetButton.disabled = false;
 
     O_cave.init();
     O_cave.draw(O_canvas);
+    O_canvas.innerHTML = O_cave.toHTML();
   };
 
   O_generateButton.onclick = function()
@@ -125,6 +142,7 @@ $(document).ready(function()
 
     O_cave.generate();
     O_cave.draw(O_canvas);
+    O_canvas.innerHTML = O_cave.toHTML();
   };
 
   O_identifyButton.onclick = function()
@@ -135,6 +153,34 @@ $(document).ready(function()
 
     O_generateButton.disabled = true;
     O_identifyButton.disabled = true;
+    O_removeButton.disabled = false;
+    O_applyTilesetButton.disabled = true;
+  };
+
+  O_removeButton.onclick = function()
+  {
+    O_cave.removeDisconnectedCaves();
+    O_cave.draw(O_canvas);
+    O_canvas.innerHTML = O_cave.toHTML();
+
+    O_generateButton.disabled = false;
+    O_identifyButton.disabled = false;
+    O_removeButton.disabled = true;
+    O_applyTilesetButton.disabled = false;
+  };
+
+  O_applyTilesetButton.onclick = function()
+  {
+    O_cave.applyTileset();
+    O_cave.draw(O_canvas);
+    O_canvas.innerHTML = O_cave.toHTML();
+
+    //O_applyTilesetButton.disabled = true;
+  };
+
+  O_downloadJSONButton.onclick = function()
+  {
+    O_cave.exportToTiledJSON();
   };
 
   O_r2CutoffCheckbox.onclick = function()

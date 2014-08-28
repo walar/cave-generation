@@ -2,6 +2,8 @@
   "name": "Kramer-Bootstrap",
   "dependencies": {
     "jquery": ">= 1.9.0",
-    "bootstrap": "3.2.x"
+    "bootstrap": "3.2.x",
+    "jszip": "Stuk/jszip",
+    "jszip-utils": "Stuk/jszip-utils"
   }
 }
